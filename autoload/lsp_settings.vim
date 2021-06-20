@@ -320,7 +320,7 @@ function! s:vim_lsp_install_server_post(command, job, code, ...) abort
         command! -nargs=1 LspRegisterServer autocmd User lsp_setup call lsp#register_server(<args>)
       endif
       exe 'source' l:script
-      delcommand LspRegisterServer
+      "delcommand LspRegisterServer
       doautocmd <nomodeline> User lsp_setup
     endif
   endif
@@ -500,7 +500,7 @@ function! s:vim_lsp_load_or_suggest(ft) abort
     endif
   endfor
 
-  delcommand LspRegisterServer
+  "delcommand LspRegisterServer
 
   if l:disabled == 0 && l:found ==# 0
     if a:ft !=# '_' && get(g:, 'lsp_settings_enable_suggestions', 1) == 1
@@ -542,7 +542,7 @@ function! lsp_settings#init() abort
       endfor
     endfor
   endfor
-
+      
   for l:ft in keys(s:settings)
     if has_key(g:, 'lsp_settings_allowlist') && index(g:lsp_settings_allowlist, l:ft) == -1 || empty(s:settings[l:ft])
       continue
